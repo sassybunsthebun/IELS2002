@@ -1,4 +1,4 @@
-# IELS2001
+# IELS2002
 A respository for tracking the changes and contributions made to the IELS2001 project spring 2024. 
 
 ## Hva betyr ordene? 
