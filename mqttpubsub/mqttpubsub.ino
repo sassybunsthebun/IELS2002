@@ -7,7 +7,7 @@
 const char* ssid = "NTNU-IOT";
 const char* password = "";
 
-const char* mqtt_server = "10.24.45.69";
+const char* mqtt_server = "10.24.45.69"; //broker IP
 
 WiFiClient espClient;
 PubSubClient client(espClient);
