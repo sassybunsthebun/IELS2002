@@ -2,5 +2,5 @@
     "board": "arduino:avr:uno",
     "programmer": "avrisp",
     "output": ".arduino/output",
-    "sketch": "ESP32_Serial.ino"
+    "sketch": "mqttpubsub/mqttpubsub.ino"
 }
