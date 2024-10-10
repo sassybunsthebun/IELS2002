@@ -1,5 +1,14 @@
 # IELS2002
-A respository for tracking the changes and contributions made to the IELS2001 project spring 2024. 
+A respository for tracking the changes and contributions made to the IELS2001 project spring 2024.
+
+# Checklist
+- [ ] for unchecked 
+- [x] for checked 
+
+- [ ] sette opp mqtt mot raspi 
+- [ ] organisere data API 
+- [ ] oversikt kommunikasjon enheter
+
 
 ## Hva betyr ordene? 
 
