@@ -1,32 +1,38 @@
+//LIBRARIES USED IN THIS SKETCH
 #include <WiFi.h>
 #include <PubSubClient.h>
 #include <Wire.h>
-#include <Adafruit_BME280.h>
-#include <Adafruit_Sensor.h>
+
+///VARIABLES FOR MQTT COMMUNICATION///
+
+//Wi-Fi connection and MQTT broker (mosquitto on Rasberry pi 3)
 
 const char* ssid = "NTNU-IOT";
 const char* password = "";
 
-// Add your MQTT Broker IP address, example:
-//const char* mqtt_server = "192.168.1.144";
 const char* mqtt_server = "10.25.18.93";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
+
+// Variable to check time between messages 
+
 long lastMsg = 0;
-char msg[50];
-int value = 0; 
+char dataFromAVR[10]; 
 
-// LED Pin
-const int ledPin = 4;
+///VARIABLES FOR SERIAL COMMUNICATION WITH AVR128DB48///
 
+//insert variables for serial communication with avr128db48 here//
+
+
+/**
+* @brief Initializes Wi-Fi connection and communcation with MQTT broker. Sets callback function for MQTT. 
+*/
 void setup() {
   Serial.begin(115200);
   setup_wifi();
   client.setServer(mqtt_server, 1883);
   client.setCallback(callback);
-
-  pinMode(ledPin, OUTPUT);
 }
 
 void setup_wifi() {
@@ -62,18 +68,15 @@ void callback(char* topic, byte* message, unsigned int length) {
   Serial.println();
 
   // Feel free to add more if statements to control more GPIOs with MQTT
-
+  //If a message is recieved from raspi, send it to AVR128DB48
   // If a message is received on the topic esp32/output, you check if the message is either "on" or "off". 
   // Changes the output state according to the message
   if (String(topic) == "esp32/output") { //esp incoming from pi
-    Serial.print("Changing output to ");
     if(messageTemp == "on"){
-      Serial.println("on");
-      digitalWrite(ledPin, HIGH);
+      Serial.println("on"); //change to sending data via serial to AVR128DB48
     }
     else if(messageTemp == "off"){
       Serial.println("off");
-      digitalWrite(ledPin, LOW);
     }
   }
 }
@@ -96,15 +99,31 @@ void reconnect() {
     }
   }
 }
+
+/**
+* @brief Reads serial data from the AVR128DB48 and stores it in a char array. 
+* @return dataFromAVR
+*/
+
+String readSerialData() {
+
+  if(Serial.available()){
+    int dataFromAVR = Serial.read();
+  }
+  return dataFromAVR;
+}
+
 void loop() {
   if (!client.connected()) {
     reconnect();
   }
   client.loop();
 
+  //Sends data from AVR to Raspberry pi 3
+
   long now = millis();
   if (now - lastMsg > 5000) {
     lastMsg = now;
-    client.publish("esp32/output", "hei"); // esp outgoing til pi
+    client.publish("esp32/output", dataFromAVR); 
   }
 }
