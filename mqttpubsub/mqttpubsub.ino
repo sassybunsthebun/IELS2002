@@ -7,13 +7,15 @@
 const char* ssid = "NTNU-IOT";
 const char* password = "";
 
-const char* mqtt_server = "10.24.45.69"; //broker IP
+// Add your MQTT Broker IP address, example:
+//const char* mqtt_server = "192.168.1.144";
+const char* mqtt_server = "10.25.18.93";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
 long lastMsg = 0;
 char msg[50];
-int value = 0;
+int value = 0; 
 
 // LED Pin
 const int ledPin = 4;
@@ -63,7 +65,7 @@ void callback(char* topic, byte* message, unsigned int length) {
 
   // If a message is received on the topic esp32/output, you check if the message is either "on" or "off". 
   // Changes the output state according to the message
-  if (String(topic) == "esp32/output") {
+  if (String(topic) == "esp32/output") { //esp incoming from pi
     Serial.print("Changing output to ");
     if(messageTemp == "on"){
       Serial.println("on");
@@ -103,7 +105,6 @@ void loop() {
   long now = millis();
   if (now - lastMsg > 5000) {
     lastMsg = now;
-    Serial.print("ESP32 sier");
-    client.publish("esp32/temperature", "hei");
+    client.publish("esp32/output", "hei"); // esp outgoing til pi
   }
 }
