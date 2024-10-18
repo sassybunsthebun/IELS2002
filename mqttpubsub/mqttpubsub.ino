@@ -66,13 +66,12 @@ void callback(char* topic, byte* message, unsigned int length) {
   }
   Serial.println();
 
-  // Feel free to add more if statements to control more GPIOs with MQTT
   //If a message is recieved from raspi, send it to AVR128DB48
-  // If a message is received on the topic esp32/output, you check if the message is either "on" or "off". 
-  // Changes the output state according to the message
-  if (String(topic) == "esp32/output") { //esp incoming from pi
+  // If a message is received on the topic esp32/output, check if the message is either "on" or "off". 
+
+  if (String(topic) == "esp32/output") {
     if(messageTemp == "vibrate"){
-      Serial.println("vibrate"); //change to sending data via serial to AVR128DB48
+      Serial.println("vibrate");
     }
     else if(messageTemp == "off"){
       Serial.println("off");
