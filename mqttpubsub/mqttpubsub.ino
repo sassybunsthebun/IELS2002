@@ -15,15 +15,14 @@ const char* mqtt_server = "10.25.18.93";
 WiFiClient espClient;
 PubSubClient client(espClient);
 
-// Variable to check time between messages 
+// Variables for data sent to AVR128DB48
 
-long lastMsg = 0;
-char dataFromAVR[10]; 
+long loopTimer = 0;
+char dataFromAVR[128];
 
 ///VARIABLES FOR SERIAL COMMUNICATION WITH AVR128DB48///
 
 //insert variables for serial communication with avr128db48 here//
-
 
 /**
 * @brief Initializes Wi-Fi connection and communcation with MQTT broker. Sets callback function for MQTT. 
@@ -72,8 +71,8 @@ void callback(char* topic, byte* message, unsigned int length) {
   // If a message is received on the topic esp32/output, you check if the message is either "on" or "off". 
   // Changes the output state according to the message
   if (String(topic) == "esp32/output") { //esp incoming from pi
-    if(messageTemp == "on"){
-      Serial.println("on"); //change to sending data via serial to AVR128DB48
+    if(messageTemp == "vibrate"){
+      Serial.println("vibrate"); //change to sending data via serial to AVR128DB48
     }
     else if(messageTemp == "off"){
       Serial.println("off");
@@ -102,15 +101,18 @@ void reconnect() {
 
 /**
 * @brief Reads serial data from the AVR128DB48 and stores it in a char array. 
-* @return dataFromAVR
+* @return bufferIndex, length of incoming data which is stored in the char array. 
 */
 
-String readSerialData() {
-
-  if(Serial.available()){
-    int dataFromAVR = Serial.read();
+int readSerial() {
+  int byteFromSerial = Serial.read();
+  int bufferIndex = 0;
+  while (byteFromSerial != -1 && bufferIndex < sizeof(dataFromAVR) - 1) {
+    dataFromAVR[bufferIndex] = byteFromSerial;
+    ++bufferIndex;
+    byteFromSerial = Serial.read();
   }
-  return dataFromAVR;
+  return bufferIndex;
 }
 
 void loop() {
@@ -119,11 +121,15 @@ void loop() {
   }
   client.loop();
 
-  //Sends data from AVR to Raspberry pi 3
+  //Every 500 milliseconds, read the data from AVR128DB48 and add a zero at the end of the char array
 
   long now = millis();
-  if (now - lastMsg > 5000) {
-    lastMsg = now;
-    client.publish("esp32/output", dataFromAVR); 
+  if (now - loopTimer > 500) {
+    if (Serial.available()) {
+      int bytesRead = readSerial(); 
+      dataFromAVR[bytesRead] = 0;
+      client.publish("esp32/output", dataFromAVR); 
+    }
+    loopTimer = now;
   }
 }
