@@ -42,6 +42,8 @@ char dataFromAVR[128];
 
 ///VARIABLES FOR SERIAL COMMUNICATION WITH AVR128DB48///
 
+char* finalGPSCoordinates;
+
 //insert variables for serial communication with avr128db48 here//
 
 /**
@@ -182,12 +184,14 @@ void loop() {
       Serial.print(", ");
       Serial.print(GPS.longitudeDegrees);
 
-      char GPSlat[128];
-      char GPSlon[128];
+      char* GPSlat;
+      char* GPSlon;
       dtostrf(GPS.latitudeDegrees, 1, 2, GPSlat);
       dtostrf(GPS.longitudeDegrees, 1, 2, GPSlon);
-      client.publish("esp32/output", GPSlat);
-      client.publish("esp32/output", GPSlon);
+      finalGPSCoordinates = strcat(finalGPSCoordinates, GPSlat);
+      finalGPSCoordinates = strcat(finalGPSCoordinates, ",");
+      finalGPSCoordinates = strcat(finalGPSCoordinates, GPSlon);
+      client.publish("esp32/output", finalGPSCoordinates);
     }
   }
 }
