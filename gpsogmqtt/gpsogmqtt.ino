@@ -185,7 +185,7 @@ void loop() {
       char GPSlat[128];
       char GPSlon[128];
       dtostrf(GPS.latitudeDegrees, 1, 2, GPSlat);
-      dtostrf(GPS.latitudeDegrees, 1, 2, GPSlon);
+      dtostrf(GPS.longitudeDegrees, 1, 2, GPSlon);
       client.publish("esp32/output", GPSlat);
       client.publish("esp32/output", GPSlon);
     }
