@@ -40,11 +40,9 @@ PubSubClient client(espClient);
 long loopTimer = 0;
 char dataFromAVR[128];
 
-///VARIABLES FOR SERIAL COMMUNICATION WITH AVR128DB48///
+///VARIABLES FOR GPS//
 
 char* finalGPSCoordinates;
-
-//insert variables for serial communication with avr128db48 here//
 
 /**
 * @brief Initializes Wi-Fi connection and communcation with MQTT broker. Sets callback function for MQTT. 
