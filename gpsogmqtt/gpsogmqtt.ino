@@ -99,10 +99,8 @@ void callback(char* topic, byte* message, unsigned int length) {
   // Changes the output state according to the message
   if (String(topic) == "esp32/output") { //esp incoming from pi
     if(messageTemp == "vibrate"){
-      Serial.println("vibrate"); //change to sending data via serial to AVR128DB48
-    }
-    else if(messageTemp == "off"){
-      Serial.println("off");
+      //Serial.println("vibrate"); //change to sending data via serial to AVR128DB48
+      digital.write(2, HIGH); // send a "high" to AVR128DB48
     }
   }
 }
