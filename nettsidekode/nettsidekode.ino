@@ -13,7 +13,7 @@ const char* PARAM_INPUT_1 = "input1";
 const char* PARAM_INPUT_2 = "input2";
 const char* PARAM_INPUT_3 = "input3";
 
-// HTML web page to handle 3 input fields (Linje, Endestopp til linje, Ensestopp)
+// HTML web page to handle 3 input fields (Linje, Retning til linje, Endestopp)
 const char index_html[] PROGMEM = R"rawliteral(
 <!DOCTYPE HTML>
 <html>
@@ -21,22 +21,22 @@ const char index_html[] PROGMEM = R"rawliteral(
   <title>AtB Reisehjelp</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-  body {color: white; background-color:#37424A;}
+  body {color: white; background-color:#37424A; font-family:verdana;}
 </style>
 </head>
 <body>
-  <h2 style="color:#A2Ad00;">AtB Reisehjelp</h2>
+  <h2 style="color:#A2Ad00; font-family:verdana;">AtB Reisehjelp</h2>
     <form action="/get">
-      Linje: <input type="text" style="background-color:black; color: white;" name="input1">
-      <input type="submit" style="background-color:#A2Ad00; color: black;" value="Submit">
+      Linje: <input type="text" style="background-color:black; color: white; border: 2px solid #007c92;" name="input1">
+      <input type="submit" style="background-color:#A2Ad00; color: black; font-family:verdana; border: 2px solid #A2Ad00;" value="Submit">
     </form><br>
     <form action="/get">
-      Retning til linje: <input type="text" style="background-color:black; color: white;" name="input2">
-      <input type="submit" style="background-color:#A2Ad00; color: black;" value="Submit">
+      Retning til linje: <input type="text" style="background-color:black; color: white; border: 2px solid #007c92;" name="input2">
+      <input type="submit" style="background-color:#A2Ad00; color: black; font-family:verdana; border: 2px solid #A2Ad00;" value="Submit">
     </form><br>
     <form action="/get">
-      Endestopp: <input type="text"  style="background-color:black; color: white;" name="input3">
-      <input type="submit" style="background-color:#A2Ad00; color: black;" value="Submit">
+      Endestopp: <input type="text"  style="background-color:black; color: white; border: 2px solid #007c92;" name="input3">
+      <input type="submit" style="background-color:#A2Ad00; color: black; font-family:verdana; border: 2px solid #A2Ad00;" value="Submit">
     </form>
   </body>
   </html>)rawliteral";
