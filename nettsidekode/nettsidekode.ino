@@ -13,7 +13,7 @@ const char* PARAM_INPUT_1 = "input1";
 const char* PARAM_INPUT_2 = "input2";
 const char* PARAM_INPUT_3 = "input3";
 
-// HTML web page to handle 3 input fields (input1, input2, input3)
+// HTML web page to handle 3 input fields (Linje, Endestopp til linje, Ensestopp)
 const char index_html[] PROGMEM = R"rawliteral(
 <!DOCTYPE HTML>
 <html>
