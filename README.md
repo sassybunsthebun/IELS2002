@@ -1,6 +1,10 @@
 # IELS2002
 A respository for tracking the changes and contributions made to the IELS2002 project spring 2024.
 
+# Documentation
+
+This project has three parts. An ESP32 module, an AVR128DB48 module and a Raspberry Pi module
+
 # Checklist
 - [ ] for unchecked 
 - [x] for checked 
