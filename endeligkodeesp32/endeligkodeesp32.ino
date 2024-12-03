@@ -137,6 +137,7 @@ void notFound(AsyncWebServerRequest *request) {
 */
 void setup() {
   Serial.begin(115200);
+  pinMode(2, OUTPUT);
   WiFi.mode(WIFI_STA);
   setup_wifi();
 
