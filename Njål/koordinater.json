@@ -1,0 +1,40 @@
+{
+    "Busstopp":[
+        {   
+            "Stoppnavn":"Kongens gate",
+            "Koordinater":["63.430605","10.391143"]
+        },
+        {
+            "Stoppnavn":"Nidarosdomen",
+            "Koordinater":["63.426015", "10.393437"]   
+        },  
+        {
+            "Stoppnavn":"Studentersamfundet",
+            "Koordinater":["63.422568", "10.394852"]
+        },
+        {
+            "Stoppnavn":"Hogskoleringen",
+            "Koordinater":["63.420771","10.404263"]
+        },
+        {
+            "Stoppnavn":"Gløshaugen",
+            "Koordinater":["63.416667","10.407621"]
+        },
+        {
+            "Stoppnavn":"Berg studentby",
+            "Koordinater":["63.413544","10.415485"]
+        },
+        {
+            "Stoppnavn":"Ostre Berg",
+            "Koordinater":["63.415995","10.430308"]  
+        },
+        {
+            "Stoppnavn":"Moholt studentby",
+            "Koordinater":["63.411708","10.43415"]   
+        },
+        {
+            "Stoppnavn":"Voll studentby",
+            "Koordinater":["63.409392","10.44429"]
+        }
+    ]
+}
