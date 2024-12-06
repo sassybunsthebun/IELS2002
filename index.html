@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>AtB Reisehjelp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        color: white;
+        background-color: #37424a;
+        font-family: verdana;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 style="color: #a2ad00; font-family: verdana">AtB Reisehjelp</h2>
+    <form action="/get">
+      <table>
+      <tr>
+        <td>Linje: </td>
+        <td><input
+          type="text"
+          style="background-color: black; color: white; border: 2px solid #007c92"
+          name="input1"
+          required
+        /></td>
+      </tr>
+
+      <tr>
+        <td>Retning: </td>
+        <td><input
+          type="text"
+          style="background-color: black; color: white; border: 2px solid #007c92"
+          name="input2"
+          required
+        /></td>
+      </tr>
+
+      <tr>
+        <td>Endestopp: </td>
+        <td><input
+          type="text"
+          style="background-color: black; color: white; border: 2px solid #007c92"
+          name="input3"
+          required
+        /></td>
+      </tr>
+      </table>
+    <br />
+      <button
+        type="submit"
+        style="
+          background-color: #007c92;
+          color: white;
+          font-family: verdana;
+        ">
+        Finn nærmeste buss!
+      </button>
+    </form>
+
+  </body>
+</html>
